@@ -25,11 +25,35 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+Puerto class >> puertoAmarre: unAmarre [
+	|puert|
+	puert:= self new inicializarPuertoAmarre: unAmarre.
+	^ puert.
+	
+]
+
+{ #category : #'as yet unclassified' }
+Puerto >> inicializarPuertoAmarre: unAmarre [ 
+	amarre := unAmarre.
+	colAlquileres := OrderedCollection new.
+]
+
+{ #category : #'as yet unclassified' }
 Puerto >> registrarAlquilerBarco: unBarco cliente: unCliente desde: desde hasta: hasta [
 	|diasAlq valorAlq|
 	diasAlq := (hasta subtractDate: desde ) + 1.
 	valorAlq := unBarco calcularValorAlquiler: diasAlq.
 	^valorAlq
+	
+	
+]
+
+{ #category : #'as yet unclassified' }
+Puerto >> valorAlquileres [
+	|colPares|
+	colPares := OrderedCollection new.
+	colPares := colAlquileres collectAll: [:alq | alq getPosAmarre  , alq obtenerPares].
+	^colPares.
 	
 	
 ]

@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-Barco class >> matricula: matri eslora: eslor añoFabricacion: añoFabri valorBase: valBas [
+Barco class >> BarcoMatricula: matri eslora: eslor añoFabricacion: añoFabri valorBase: valBas [
 |barc|
 barc := self new.
 barc inicializarBarcoMatricula: matri eslora: eslor añoFabricacion: añoFabri valorBase: valBas.
@@ -20,10 +20,17 @@ barc inicializarBarcoMatricula: matri eslora: eslor añoFabricacion: añoFabri v
 ]
 
 { #category : #'as yet unclassified' }
+Barco >> calcularModulo [
+	|valor|
+	valor := (self obtenerEslora * 10) + self getValorBase.
+	^valor.
+]
+
+{ #category : #'as yet unclassified' }
 Barco >> calcularValorAlquiler: diasAlq [
 	|temp|
-	temp:= diasAlq * (self obtenerEslora * 10) + self getValorBase.
-	^temp 
+	temp:= diasAlq * self calcularModulo.
+	^temp
 ]
 
 { #category : #'as yet unclassified' }
